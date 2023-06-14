@@ -1,0 +1,36 @@
+<div style="margin: 20px; display: flex; flex-direction: column; gap: 20px;">
+<h2>{{title}}</h2>
+
+<form *ngIf="!isAuth" (submit)="reg(login, pass)" style="gap: 10px; display: flex; flex-direction: column">
+    <span>Логин</span>
+    <input type="text" class="form-control" placeholder="Логин" id="login" style="width: 20%;" #login>
+    <span>Пароль</span>
+    <input type="text" class="form-control" placeholder="Пароль" id="pass" style="width: 20%;" #pass>
+    <button type="button" class="btn btn-success" (click)="reg(login.value, pass.value)" style="margin-top: 10px; width: 20%;">Зарегистрироваться</button>
+</form>
+
+<form *ngIf="isAuth && !cabinet" style="gap: 10px; display: flex; flex-direction: column">
+        <span>Логин</span>
+        <input type="text" class="form-control" placeholder="Логин" id="login" style="width: 20%;" #login>
+        <span>Пароль</span>
+        <input type="text" class="form-control" placeholder="Пароль" id="pass" style="width: 20%;" #pass>
+        <button type="button" class="btn btn-success" (click)="auth(login.value, pass.value)" style="margin-top: 10px; width: 20%;">Авторизироваться</button>
+</form>
+</div>
+
+<div *ngIf="cabinet" class="container-lg" style="background-color: burlywood">
+    <h5>Информация пользователя:</h5>
+    <li>Имя: {{user.firstName}}</li>
+    <li>Фамилия: {{user.lastName}}</li>
+    <li>Возраст: {{user.age}}</li>
+    <li>Профессия: {{user.profession}}</li>
+    <li>Образование: {{user.education}}</li>
+</div>
+
+<form *ngIf="cabinet" class="form-group container-lg" style="margin-top: 6px; display: flex; flex-direction: column; gap: 4px;">
+<input type="text" class="form-control" [(ngModel)] = "user.firstName" name="firstName">
+<input type="text" class="form-control" [(ngModel)] = "user.lastName" name="lastName">
+<input type="text" class="form-control" [(ngModel)] = "user.age" name="age">
+<input type="text" class="form-control"[(ngModel)] = "user.profession" name="profession">
+<input type="text" class="form-control"[(ngModel)] = "user.education" name="education">
+</form>

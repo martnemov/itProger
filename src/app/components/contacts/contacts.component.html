@@ -1,0 +1,33 @@
+<div class = "container" style="display: flex; padding: 15px; flex-direction: column">
+<h2>Страница c контактами</h2>
+<br>
+<h4>Добавление комментариев</h4>
+<br>
+<p>Сообщение</p>
+
+
+<form (submit)="addComment(comment.value, name.value)">
+  <div class="form-group">
+<textarea class="form-control" 
+id="comment" type="text" placeholder="Введите сообщение" style="margin-top: 5px; width: 20%; " #comment>
+</textarea>
+<br>
+<p>Ваше имя</p>
+<input class="form-control" id="name" type="text" placeholder="Введите ваше имя" style="margin-top: 5px; width: 20%;" #name>
+<br>
+<button type="button" class="btn btn-info" style="margin-top: 10px; width: 20%;" 
+(click)="addComment(comment.value, name.value)">Добавить комментарий</button>
+
+<div *ngIf="hasError" class="alert alert-danger" style="width: 40%; margin-top: 10px;">{{error}}</div>
+</div>
+</form>
+
+<br>
+
+<h4>Комментарии</h4>
+<div *ngFor="let comment of comments; let i = index" 
+class="alert alert-warning" style="margin-top: 10px; width: 40%; display: flex; flex-direction: column;">
+      <b>Имя: {{names[i]}}</b>
+      <b>Сообщение: {{comment}}</b>
+</div>
+</div>
